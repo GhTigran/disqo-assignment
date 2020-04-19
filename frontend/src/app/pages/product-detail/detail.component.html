@@ -1,0 +1,37 @@
+<h1 align="center" class="display-4 mb-5">{{title}}</h1>
+<div class="row text-center justify-content-center">
+    <div class="col-lg-6 ">
+        <div class="card mb-4 ">
+            <img height="60%" class="card-img-top" src="{{productInfo?.image}}">
+            <div class="card-body">
+                <h4 class="card-title ">{{productInfo?.name}}</h4>
+                <div class="text-left">
+                    <input hidden name="productId" [value]=productInfo?.id>
+                    <p class="card-test"><strong>Description: </strong>{{productInfo?.description}}</p>
+                    <p class="card-text">
+                        <strong>Price: </strong>
+                        <label id="price">{{productInfo?.price | currency}}</label>
+                    </p>
+                    <p class="card-text"><strong>Stock: </strong>{{productInfo?.stock}}</p>
+
+                    <label class="card-text">
+                        <strong>Quantity: </strong>
+                        <input [(ngModel)]=count
+                               (change)="validateCount()"
+                               type="number"
+                               name="count"
+                               required
+                               min="1"
+                               [max]=productInfo?.stock
+                        >
+                    </label>
+
+
+                    <p class="card-text"><strong>Subtotal: </strong>
+                        <label id="subtotal">{{count * productInfo?.price | currency}}</label>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

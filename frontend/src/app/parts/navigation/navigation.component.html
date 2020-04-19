@@ -1,0 +1,102 @@
+<header>
+    <a id="nav-top"></a>
+
+    <div id="nav-belt">
+        <div class="nav-left">
+            <div id="nav-logo">
+                <a href="#" class="nav-logo-link"></a>
+                <a href="#" class="nav-logo-tagline">Try Prime</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div id="nav-holiday">
+                <a href="#"></a>
+            </div>
+        </div>
+        <div class="nav-fill">
+            <div id="nav-search">
+                <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm.value)">
+                    <div class="nav-left">
+                        <span class="nav-search-label">{{selectedCategory}}</span>
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        <select (change)="selectCategory($event)" formControlName="category">
+                            <option value="0">All</option>
+                            <option *ngFor="let category of categories;" [value]="category.id">
+                                {{category.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="nav-right">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input type="submit">
+                    </div>
+                    <div class="nav-fill">
+                        <input type="text" autocomplete="off" formControlName="search">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <nav id="nav-main">
+        <div class="nav-left">
+            <div class="nav-shop">
+                <a class="nav-a" href="#">
+                    Departments
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a class="nav-a" href="#">
+                <span>EN</span>
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+
+            <ng-container *ngIf="currentUser; else noUser">
+                <a class="nav-a " routerLink="/profile">
+                    <span>Hello. {{currentUser.name}}</span>
+                    Accounts &amp; Lists
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </a>
+                <a class="nav-a " (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                    Sign Out
+                </a>
+            </ng-container>
+            <ng-template #noUser>
+                <a class="nav-a" routerLink="/login">
+                    Sign In
+                </a>
+                <a class="nav-a" routerLink="/register">
+                    Sign Up
+                </a>
+            </ng-template>
+
+            <a *ngIf="!currentUser || currentUser.role == Role.Customer" class="nav-a cart" routerLink="/cart">
+                <span>0</span>
+                Cart
+            </a>
+
+        </div>
+        <div class="nav-fill">
+            <ul>
+                <li>
+                    <a href="#">Your Amazon.com</a>
+                </li>
+                <li>
+                    <a href="#">Today's Deals</a>
+                </li>
+                <li>
+                    <a href="#">Gift Cards &amp; Registry</a>
+                </li>
+                <li>
+                    <a href="#">Sell</a>
+                </li>
+                <li>
+                    <a href="#">Help</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
