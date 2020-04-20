@@ -2,6 +2,9 @@
 
 A web shoo project, demonstrating integration of Java based backend REST API and Angular in frontend. 
 
+## Screenshot
+![Screenshot](./screenshot.png)
+
 ## Technology Stacks
 **Backend**
   - Java 11
