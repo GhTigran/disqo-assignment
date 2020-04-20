@@ -21,10 +21,8 @@ import java.security.Principal;
 @CrossOrigin
 @RestController
 public class UserController {
-
     @Autowired
     UserService userService;
-
 
     @Autowired
     JwtProvider jwtProvider;
